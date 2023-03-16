@@ -304,6 +304,32 @@ view: asset_management {
   dimension: investor {
     type: string
     sql: ${TABLE}.Investor ;;
+    action: {
+      label: " Email Investor"
+      url: "https://desolate-refuge-53336.herokuapp.com/posts"
+      icon_url: "https://sendgrid.com/favicon.ico"
+      param: {
+        name: "some_auth_code"
+        value: "abc123456"
+      }
+      form_param: {
+        name: "Subject"
+        required: yes
+        default: "{{ stock_name }} Is on the rise"
+      }
+      form_param: {
+        name: "Body"
+        type: textarea
+        required: yes
+        default:
+        "Dear {{value}},
+
+        We appreciate your continue loyalty and we have identified that one of your instruments is performing particularly
+        well. Please make sure to contact us to discuss how to take this investment to the next level
+
+        Your friends at Cymbal Investments"
+      }
+    }
   }
 
   dimension: investor__group_ {
@@ -318,6 +344,7 @@ view: asset_management {
   }
 
   dimension: latest_date {
+    hidden: yes
     type: string
     sql: ${TABLE}.Latest_Date ;;
   }
@@ -387,9 +414,9 @@ view: asset_management {
     type: string
     sql: ${TABLE}.Stock_Name ;;
     link: {
-      label: "Website"
+      label: "Search"
       url: "http://www.google.com/search?q={{ value | encode_uri }}"
-      icon_url: "http://www.google.com/s2/favicons?domain=www.{{ value | encode_uri }}.com"
+      icon_url: "http://www.google.com/s2/favicons?domain=www.google.com"
     }
     link: {
       label: "{{value}} Detail Dashboard"
