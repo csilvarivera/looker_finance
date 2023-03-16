@@ -304,32 +304,6 @@ view: asset_management {
   dimension: investor {
     type: string
     sql: ${TABLE}.Investor ;;
-    action: {
-      label: " Email Investor"
-      url: "https://desolate-refuge-53336.herokuapp.com/posts"
-      icon_url: "https://sendgrid.com/favicon.ico"
-      param: {
-        name: "some_auth_code"
-        value: "abc123456"
-      }
-      form_param: {
-        name: "Subject"
-        required: yes
-        default: "{{ stock_name }} Is on the rise"
-      }
-      form_param: {
-        name: "Body"
-        type: textarea
-        required: yes
-        default:
-        "Dear {{value}},
-
-        We appreciate your continue loyalty and we have identified that one of your instruments is performing particularly
-        well. Please make sure to contact us to discuss how to take this investment to the next level
-
-        Your friends at Cymbal Investments"
-      }
-    }
   }
 
   dimension: investor__group_ {
@@ -422,6 +396,32 @@ view: asset_management {
       label: "{{value}} Detail Dashboard"
       url: "/dashboards/83?Date%20Date=2017%2F02%2F10%20to%202017%2F08%2F10&Stock%20Name={{ value | encode_uri }}"
       icon_url: "https://www.seekpng.com/png/full/138-1386046_google-analytics-integration-analytics-icon-blue-png.png"
+    }
+    action: {
+      label: " Email Investor"
+      url: "https://desolate-refuge-53336.herokuapp.com/posts"
+      icon_url: "https://sendgrid.com/favicon.ico"
+      param: {
+        name: "some_auth_code"
+        value: "abc123456"
+      }
+      form_param: {
+        name: "Subject"
+        required: yes
+        default: "{{ value }} Is on the rise"
+      }
+      form_param: {
+        name: "Body"
+        type: textarea
+        required: yes
+        default:
+        "Dear {{investor}},
+
+        We appreciate your continue loyalty and we have identified that one of your instruments is performing particularly
+        well. Please make sure to contact us to discuss how to take this investment to the next level
+
+        Your friends at Cymbal Investments"
+      }
     }
   }
 
