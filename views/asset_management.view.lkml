@@ -101,6 +101,8 @@ view: asset_management {
     type: sum
     value_format_name: usd
     sql: ${current_investment_value} ;;
+    drill_fields: [detail*]
+
   }
 
   dimension: daily_change {
@@ -328,6 +330,7 @@ view: asset_management {
   dimension: market {
     type: string
     sql: ${TABLE}.Market ;;
+    drill_fields: [stock_ticker__profiles_]
   }
 
   dimension: mkt_cap__m_ {
@@ -377,6 +380,7 @@ view: asset_management {
   dimension: sector {
     type: string
     sql: ${TABLE}.Sector ;;
+    drill_fields: [industry]
   }
 
   dimension: stock_name {
@@ -417,10 +421,14 @@ view: asset_management {
     sql:max(${date_date});;
   }
 
-
-
   measure: count {
     type: count
     drill_fields: [stock_name]
+  }
+
+########## Sets ##########
+
+  set: detail {
+    fields: [stock_ticker__profiles_, stock_name, investor,sector,industry,total_initial_investment_value,total_current_investment_value,total_close,total_fund_value]
   }
 }
