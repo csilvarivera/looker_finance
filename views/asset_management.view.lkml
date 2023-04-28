@@ -18,7 +18,7 @@ view: asset_management {
   }
 
   measure: fund_changes {
-    label: "Fund Change (%)"
+    label: "Fund Changess (%)"
     type: average
     value_format_name: percent_2
     sql: ${__change} *100 ;;

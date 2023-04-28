@@ -28,3 +28,5 @@ persist_with: asset_management_default_datagroup
 explore: asset_evaluation {}
 
 explore: asset_management {}
+
+explore: sql_runner_query {}
